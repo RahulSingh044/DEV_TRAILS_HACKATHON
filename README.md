@@ -291,7 +291,12 @@ Parametric triggers are pre-defined thresholds tied to external data sources. Wh
 
 ## AI/ML Integration Workflow
 
-Three core AI/ML models are built using Python libraries: **Pandas, NumPy, Scikit-learn, and XGBoost**.
+GigShield uses 3 core machine learning models built with:
+
+- Pandas  
+- NumPy  
+- Scikit-learn  
+- XGBoost  
 
 ---
 
@@ -404,6 +409,84 @@ Protects the insurance engine from false claims using anomaly detection.
 | Database | PostgreSQL + NeonDB + Prisma ORM |
 | AI / ML | Python (Pandas, NumPy, Scikit-learn, XGBoost) |
 | Payments | UPI / Simulated Payment Gateway |
+
+---
+## External Integrations & APIs
+
+GigShield relies on real-time external data sources to power its parametric insurance engine and AI models.
+
+| Category | Service | Purpose |
+|---|---|---|
+| Weather Data | OpenWeather | Rainfall, temperature, storm alerts |
+| Air Quality | AQICN (World Air Quality Index) | AQI-based disruption detection |
+| Historical Weather | IMD (Mausam) | Model training (rainfall, heat patterns) |
+| Traffic Intelligence | TomTom | Congestion, road closures, delays |
+| Maps & Visualization | TomTom Maps | Worker location & risk zones |
+| Payments | Razorpay | Premium payment & payout simulation |
+| Notifications | Twilio | SMS alerts & claim notifications |
+
+---
+
+## Role of TomTom (Traffic Intelligence Layer)
+
+TomTom acts as a **road intelligence provider** enabling hyperlocal decision-making.
+
+### 1. Worker Location & Zone Detection
+- Maps worker GPS to delivery zones  
+- Enables zone-based risk scoring  
+
+**Example:**
+- Location: 19.0760, 72.8777  
+- Zone: Andheri East  
+- Flood Risk: High  
+- Risk Level: Medium  
+
+---
+
+### 2️. Traffic Disruption Detection
+- Detects congestion, accidents, and blocked roads  
+
+**Example:**
+- Congestion Index: 8.7 (Normal: 3)  
+→ Delivery disruption detected  
+
+---
+
+### 3️. Route Delay Analysis
+- Compares normal vs disrupted travel time  
+
+**Example:**
+- Normal: 12 min  
+- Disrupted: 35 min  
+→ Delivery efficiency drop  
+
+---
+
+### 4️. Hyperlocal Risk Zones
+- Custom zones:
+  - Flood-prone areas  
+  - Pollution-heavy zones  
+  - Traffic choke points  
+
+→ Used for dynamic premium pricing  
+
+---
+
+### 5️. Delivery Activity Estimation
+- Estimates deliveries/hour and route efficiency  
+
+**Example:**
+- Normal: 5 deliveries/hour  
+- Disrupted: 2 deliveries/hour  
+→ Income loss detected  
+
+---
+
+### 6️. Heatmaps for Dashboard
+- Visualizes:
+  - Flood zones (Red)  
+  - Traffic disruptions (Orange)  
+  - Normal zones (Green)  
 
 ---
 
